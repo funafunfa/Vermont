@@ -1,0 +1,24 @@
+extends layout
+
+
+block content  
+  div(id="root" style="width: 1000px; margin: 40px auto; padding: 10px;")
+
+  script.
+    var lock = new Auth0Lock('#{env.AUTH0_CLIENT_ID}', '#{env.AUTH0_DOMAIN}', { auth: {
+          redirectUrl: '#{env.AUTH0_CALLBACK_URL}'
+        , responseType: 'code'
+        , params: {
+          scope: 'openid name email picture'
+        }
+      }
+        , theme: {
+            logo: 'http://i.piccy.info/i9/66fb510a6c6b532f732289ba71b5dd23/1489401038/3322/1127000/BeFunkyPhoto.png',
+            primaryColor: 'green'
+        }
+        , languageDictionary: {
+            title: "Vermont"
+        }});
+    lock.show();
+
+  
